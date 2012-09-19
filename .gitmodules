@@ -1,0 +1,9 @@
+[submodule "dotfiles/.vim"]
+	path = dotfiles/.vim
+	url = git@github.com:dantleech/vim
+[submodule "dotfiles/.config/awesome/obvious"]
+	path = dotfiles/.config/awesome/obvious
+	url = git://git.mercenariesguild.net/obvious.git
+[submodule "dotfiles/.config/awesome/vicious"]
+	path = dotfiles/.config/awesome/vicious
+	url = http://git.sysphere.org/vicious
