@@ -2,7 +2,9 @@
 
 for file in $(cat dotfiles.list); do
     TARGET=$HOME"/"$file
-    SOURCE="dotfiles/"$file
+    SOURCE=$HOME"/dotfiles/dotfiles/"$file
+    cd $HOME
+    echo `pwd`
 
     if [ -h $TARGET ]; then
         rm $TARGET
@@ -12,6 +14,6 @@ for file in $(cat dotfiles.list); do
         echo " -- "$TARGET" is not a symlink -- skipping!!!"
     else
         echo " -- Symlinking "$SOURCE" to "$TARGET
-        ln -s $SOURCE $TARGET
+        ln -s $SOURCE $file
     fi
 done
