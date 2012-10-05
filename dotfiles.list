@@ -1,5 +1,5 @@
 .tmux.conf
-.ssh
 .config/awesome
 .vimrc
 .vim
+.pentadactylrc
