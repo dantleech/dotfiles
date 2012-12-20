@@ -1,5 +1,7 @@
 .tmux.conf
 .config/awesome
+.config/luakit
+.ssh/config
 .vimrc
 .vim
 .pentadactylrc

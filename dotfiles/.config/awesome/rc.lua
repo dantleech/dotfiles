@@ -11,7 +11,9 @@ require("battery")
 require("volume")
 require("vicious")
 require("cpu")
+require("load")
 require("mpd")
+require("mail")
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -94,12 +96,17 @@ batterywidget_t = awful.tooltip({ objects = { batterywidget},})
 batterywidget_t:set_text(battery_remaining())
 
 -- Create CPU widget
-mpdwidget = widget({ type = "textbox", align = "right" })
 cpuwidget = widget({ type = "textbox", align = "right" })
 tempwidget = widget({ type = "textbox", align = "right" })
-awful.hooks.timer.register(1, function() cpuwidget.text = activecpu() end)
-awful.hooks.timer.register(1, function() tempwidget.text = temperature() end)
-awful.hooks.timer.register(1, function() mpdwidget.text = get_song() end)
+mpdwidget = widget({ type = "textbox" })
+loadwidget = widget({ type = "textbox" })
+mailwidget = widget({ type = "textbox" })
+mailwidget.text = get_mail_status()
+awful.hooks.timer.register(2, function() cpuwidget.text = activecpu() end)
+awful.hooks.timer.register(2, function() tempwidget.text = temperature() end)
+awful.hooks.timer.register(5, function() mpdwidget.text = get_song() end)
+awful.hooks.timer.register(5, function() loadwidget.text = load_uptime() end)
+awful.hooks.timer.register(15, function() mailwidget.text = get_mail_status() end)
 -- awful.hooks.timer.register(1, function() netwidget.text = obvious.net.recv('wlan0') end)
 
 -- Create volume widget
@@ -133,35 +140,6 @@ mytextclock = awful.widget.textclock({ align = "right" })
 -- Calendar widget to attach to the textclock
 require('calendar2')
 calendar2.addCalendarToWidget(mytextclock)
-
--- Memory widget
--- memwidget = awful.widget.progressbar()
--- memwidget:set_width(8)
--- memwidget:set_height(10)
--- memwidget:set_vertical(true)
--- memwidget:set_background_color("#494B4F")
--- memwidget:set_border_color(nil)
--- memwidget:set_color("#AECF96")
--- memwidget:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
--- vicious.register(memwidget, vicious.widgets.mem, "$1", 13)
-
--- Network widget
--- netwidget = awful.widget.graph()
--- netwidget:set_width(50)
--- netwidget:set_height(30)
--- netwidget:set_background_color("#494B4F")
--- netwidget:set_color("#FF5656")
--- netwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
--- 
--- netwidget_t = awful.tooltip({ objects = { netwidget.widget },})
--- 
--- Register network widget
--- vicious.register(netwidget, vicious.widgets.net,
---                     function (widget, args)
---                         netwidget_t:set_text("Network download: " .. args["{wlan0 down_mb}"] .. "mb/s")
---                         return args["{wlan0 down_mb}"]
---                     end)
-
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -243,9 +221,8 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
-        tempwidget,
-        cpuwidget,
         batterywidget,
+        mailwidget,
         tb_volume,
 --        memwidget,
 --        netwidget,
@@ -261,7 +238,14 @@ end
 for s = 1, screen.count() do
     btwibox[s] = awful.wibox({ position = "bottom", screen = s })
     btwibox[s].widgets = {
-        mpdwidget,
+        {
+            mpdwidget,
+            layout = awful.widget.layout.horizontal.leftright
+        },
+        tempwidget,
+        cpuwidget,
+        loadwidget,
+        layout = awful.widget.layout.horizontal.rightleft
     }
 end
 
@@ -312,6 +296,7 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "b", function () awful.util.spawn("luakit") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -432,7 +417,7 @@ awful.rules.rules = {
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
     -- Add a titlebar
-    -- awful.titlebar.add(c, { modkey = modkey })
+    -- awful.titlebar.add(c, { modkey = modkey, position = "bottom" })
 
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)

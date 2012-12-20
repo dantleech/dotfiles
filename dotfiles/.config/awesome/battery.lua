@@ -55,7 +55,7 @@ end
 function batclosure (adapter)
     local nextlim = limits[1][1]
     return function ()
-        local prefix = "Bat:"
+        local prefix = "B:"
         local battery, dir = get_bat_state(adapter)
         if dir == -1 then
             dirsign = "↓"
