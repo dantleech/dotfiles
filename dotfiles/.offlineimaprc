@@ -1,0 +1,39 @@
+[general]
+ui = blinkenlights
+accounts = ylly, dantleech
+maxsyncaccounts = 2
+
+[Account ylly]
+autorefresh = 5
+quick = 10
+localrepository = ylly-local
+remoterepository = ylly-remote
+
+[Account dantleech]
+autorefresh = 5
+quick = 10
+localrepository = dantleech-local
+remoterepository = dantleech-remote
+
+[Repository ylly-local]
+type = Maildir
+localfolders = /home/daniel/mail/ylly
+
+[Repository ylly-remote]
+keepalive = 60
+type = Gmail
+remoteuser = daniel@ylyad.fr
+remotepass = lee1Uzah
+folderfilter = lambda foldername: foldername in ['INBOX']
+cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
+
+[Repository dantleech-local]
+type = Maildir
+localfolders = /home/daniel/mail/dantleech
+
+[Repository dantleech-remote]
+type = IMAP
+keepalive = 60
+remotehost = www.dantleech.com
+remoteuser = daniel
+remotepass = athooX9A
