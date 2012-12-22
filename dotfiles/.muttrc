@@ -1,0 +1,61 @@
+mailboxes /home/daniel/mail/dantleech /home/daniel/mail/ylly/INBOX
+set sendmail="/usr/bin/msmtp"
+set sort=threads
+set mail_check=0
+auto_view text/html
+set realname="Daniel Leech"
+set reverse_name
+set include
+set reply_to
+
+set folder=~/mail
+set spoolfile="+dantleech/INBOX"
+set timeout=3
+folder-hook dantleech/* source ~/.mutt/dantleech.muttrc
+folder-hook ylly/* source ~/.mutt/ylly.muttrc
+
+# bindings
+bind pager i           exit
+bind pager /           search
+bind pager <up>        previous-line
+bind pager <down>      next-line
+bind pager k           previous-line
+bind pager j           next-line
+bind pager gg          top
+bind pager G           bottom
+bind index gg          first-entry
+bind index G           last-entry
+bind pager K           previous-undeleted
+bind pager J           next-undeleted
+bind index K           previous-unread
+bind index J           next-unread
+bind index,pager R     group-reply
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+
+#lists
+lists symfony-cmf-devs
+subscribe symfony-cmf-devs
+
+# aliases
+alias dan.t.leech Me <dan.t.leech@gmail.com>
+alias sdepaoli Sylvia Depaoli <sdepaoli@free.fr>
+alias taymour Taymour Negib <taymour@ylyad.fr>
+alias yprox-dev YProx Dev <dev-yprox@ylyad.fr>
+alias anne-fleur Anne-Fleur Gélineau <anne-fleur@yproximite.fr>
+alias pisda Pisda-André PHCAR <pisda@yproximite.fr>
+alias lionel Lionel Audisio <lionel@yproximite.fr>
+alias michael Michael Tessier <michael@yproximite.fr>
+alias fesweb \"Agence Fesweb [www.fesweb.net]\" <contact@fesweb.net>
+alias tompleech Tom Leech <tompleech@hotmail.co.uk>
+alias robb Robb Leech <robb@robbleech.com>
+alias benoit Benoît Mariaux <benoit@ylyad.fr>
+alias symfony-cmf-devs Daniel Leech <symfony-cmf-devs@googlegroups.com>
+alias jennifer_leech466 Jen Leech <jennifer_leech466@hotmail.com>
+alias lifeextension25 Jordan Samouh <lifeextension25@gmail.com>
+alias marion.ardi Marion Ardi <marion.ardi@yproximite.fr>
+alias franck Franck Touboul <franck@ylly.fr>
+alias sonia Sonia <sahoui.sonia@gmail.com>
+alias cyrille Cyrille Cordelle <cyrille@yproximite.fr>
+alias kathyrussell466 Kathy Russell <kathyrussell466@googlemail.com>
+alias nicolas Nicolas Ahmed <nicolas@ylyad.fr>
+alias eric Eric Vincent <eric@ylly.fr>

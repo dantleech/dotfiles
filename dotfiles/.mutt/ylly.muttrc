@@ -1,0 +1,3 @@
+color status cyan default
+set from="daniel@ylyad.fr"
+set sendmail="/usr/bin/msmtp -a ylly"
