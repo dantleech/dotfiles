@@ -94,6 +94,7 @@ require "userscripts"
 
 -- Add bookmarks support
 require "bookmarks"
+require "bookmarks_chrome"
 
 -- Add download support
 require "downloads"
@@ -120,6 +121,8 @@ require "taborder"
 -- Save web history
 require "history"
 require "history_chrome"
+
+require "history_search"
 
 -- Add command completion
 require "completion"

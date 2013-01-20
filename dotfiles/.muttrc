@@ -1,4 +1,10 @@
-mailboxes /home/daniel/mail/dantleech /home/daniel/mail/ylly/INBOX
+mailboxes mail/dantleech/INBOX
+mailboxes mail/dantleech/github.symfony
+mailboxes mail/dantleech/github.yprox
+mailboxes mail/dantleech/github.cmf
+mailboxes mail/ylly/INBOX
+
+source ~/.mutt/solarizedcolors
 set sendmail="/usr/bin/msmtp"
 set sort=threads
 set mail_check=0
@@ -59,3 +65,4 @@ alias cyrille Cyrille Cordelle <cyrille@yproximite.fr>
 alias kathyrussell466 Kathy Russell <kathyrussell466@googlemail.com>
 alias nicolas Nicolas Ahmed <nicolas@ylyad.fr>
 alias eric Eric Vincent <eric@ylly.fr>
+alias david David Buchmann <david@liip.ch>

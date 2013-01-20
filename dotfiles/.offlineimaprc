@@ -1,16 +1,16 @@
 [general]
-ui = blinkenlights
+ui = basic
 accounts = ylly, dantleech
 maxsyncaccounts = 2
 
 [Account ylly]
-autorefresh = 5
+autorefresh = 30
 quick = 10
 localrepository = ylly-local
 remoterepository = ylly-remote
 
 [Account dantleech]
-autorefresh = 5
+autorefresh = 10
 quick = 10
 localrepository = dantleech-local
 remoterepository = dantleech-remote
@@ -25,7 +25,7 @@ type = Gmail
 remoteuser = daniel@ylyad.fr
 remotepass = lee1Uzah
 folderfilter = lambda foldername: foldername in ['INBOX']
-cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [Repository dantleech-local]
 type = Maildir

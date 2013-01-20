@@ -6,7 +6,7 @@ function load_uptime()
    if (not uptime) then
        uptime = '0 days'
    end
-   local message = '<span foreground="green">up ' .. uptime ..'</span> <span foreground="yellow">' .. load_average .. '</span>'
+   local message = '<span foreground="lightgreen">up ' .. uptime ..'</span> <span foreground="yellow">' .. load_average .. '</span>'
    return message
 end
 

@@ -1,73 +1,53 @@
------------------------------------
--- Author: Uli Schlachter        --
--- Copyright 2009 Uli Schlachter --
------------------------------------
 
-module("net")
+global_stats = {}
 
--- Returns the total traffic send/received on some interface
-local function netinfo(interface)
+function _iface_io()
     net = io.open("/proc/net/dev")
+
     ret = { }
 
-    -- Init in case we don't find any matches
-    ret.recv = 0
-    ret.send = 0
-
     for line in net:lines() do
-        if line:match("^%s+" .. interface) then
-            ret.recv = tonumber(line:match(":%s*(%d+)"))
-            ret.send = tonumber(line:match("(%d+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+$"))
+        local _, _, iface = string.find(line, "(%w+):")
+
+        if iface then
+            ret[iface] = {};
+            ret[iface].recv = tonumber(line:match(":%s*(%d+)"))
+            ret[iface].send = tonumber(line:match("(%d+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+$"))
         end
     end
     net:close()
     return ret
 end
 
-local function get_data(object)
-    local last = object.last
-    local cur = netinfo(object.device)
-    object.last = cur
-
-    ret = { }
-    if last then
-        ret.recv = cur.recv - last.recv
-        ret.send = cur.send - last.send
-    else
-        ret.recv = 0
-        ret.send = 0
+function poll()
+    local ret = {}
+    local stats = _iface_io()
+    if next(global_stats) == nil then
+        global_stats = stats
     end
 
-    -- This can happen e.g. when an interface is brought down and up again
-    -- or when some counter overflows
-    if ret.recv < 0 then
-        ret.recv = 0
+    for iface, data in pairs(stats) do
+        if not (iface == "lo") then
+            ret[iface] = {}
+            ret[iface].recv = string.format("%.1f", (data.recv - global_stats[iface].recv) / 1000)
+            ret[iface].send = string.format("%.1f", (data.send - global_stats[iface].send) / 1000)
+        end
     end
-    if ret.send < 0 then
-        ret.send = 0
+
+    global_stats = stats;
+
+    return ret
+end
+
+function get_iface_io_rate()
+    local poll = poll()
+    local ret = ''
+
+    for iface, data in pairs(poll) do
+       ret = ret .. '<span foreground="white">' .. iface ..': ' .. string.format("%6s", data.recv)  .. ' / ' .. string.format("%-6s", data.send) ..'</span> '
     end
 
     return ret
 end
 
-local function data(device, key)
-    local device = device or "eth0"
-    ret = {}
-
-    ret.device = device
-    ret.get = function(obj)
-        return get_data(obj)[key]
-    end
-
-    return ret.get(ret)
-end
-
-function recv(device)
-    return data(device, "recv")
-end
-
-function send(device)
-    return data(device, "send")
-end
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=4:softtabstop=4:encoding=utf-8:textwidth=80
+print(get_iface_io_rate())

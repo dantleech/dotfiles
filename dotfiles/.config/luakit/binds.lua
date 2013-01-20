@@ -199,6 +199,7 @@ add_binds("normal", {
     buf("^W$",                      function (w, c) w:enter_cmd(":winopen " .. (w.view.uri or "")) end),
     buf("^,g$",                     function (w, c) w:enter_cmd(":open google ") end),
     buf("^,d$",                     function (w, c) w:enter_cmd(":open wiktionary  ") end),
+    buf("^,h$",                     function (w, c) w:enter_cmd(":open github  ") end),
     buf("^,n$",                     function (w, c) w:enter_cmd(":open netflix "
 ) end),
 
@@ -210,6 +211,7 @@ add_binds("normal", {
     key({},          "XF86Forward", function (w, m) w:forward(m.count) end),
     key({"Control"}, "o",           function (w, m) w:back(m.count)    end),
     key({"Control"}, "i",           function (w, m) w:forward(m.count) end),
+    buf("^gl",                      function (w) w:browse_hist_dmenu() end),
 
     -- Tab
     key({"Control"}, "Page_Up",     function (w)       w:prev_tab() end),

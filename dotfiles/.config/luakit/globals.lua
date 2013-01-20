@@ -52,11 +52,12 @@ soup.accept_policy = cookie_policy.always
 -- it to avoid collisions with lua's string.format characters.
 -- See: http://www.lua.org/manual/5.1/manual.html#pdf-string.format
 search_engines = {
-    luakit      = "http://luakit.org/search/index/luakit?q=%s",
     google      = "http://google.com/search?q=%s",
     duckduckgo  = "http://duckduckgo.com/?q=%s&t=debian",
     wikipedia   = "http://en.wikipedia.org/wiki/Special:Search?search=%s",
     wiktionary  = "http://en.wiktionary.org/wiki/Special:Search?search=%s",
+    github      = "https://github.com/search?q=%s&amp;ref=opensearch",
+    arch        = "https://wiki.archlinux.org/index.php?title=Special:Search&search=%s",
     debbugs     = "http://bugs.debian.org/%s",
     imdb        = "http://imdb.com/find?s=all&q=%s",
     sourceforge = "http://sf.net/search/?words=%s",

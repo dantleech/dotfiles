@@ -1,4 +1,8 @@
-local mailboxes = { dtl = '~/mail/dantleech/INBOX', ylly = '~/mail/ylly/INBOX' }
+local mailboxes = { 
+    cmf = '~/mail/dantleech/github.cmf',
+    ibx = '~/mail/dantleech/INBOX' ,
+    sfg = '~/mail/dantleech/github.symfony',
+}
 function get_mail_status()
     local ret = ''
     for alias, box in pairs(mailboxes) do
@@ -7,7 +11,7 @@ function get_mail_status()
         ret = ret .. alias .. ' ' .. count .. ' '
     end
 
-    return '<span foreground="green">M: ' .. ret .. '</span>'
+    return '<span foreground="lightgreen">' .. ret .. '</span>'
 end
 
 print(get_mail_status())

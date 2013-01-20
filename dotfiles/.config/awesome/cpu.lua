@@ -23,6 +23,6 @@
        local status = h:read()
        status = string.match(status, 'ok, ([0-9]+)')
        status = status .. "°C"
-       status = '<span foreground="green">' .. status .. '</span>'
+       status = '<span foreground="lightgreen">' .. status .. '</span>'
        return status
    end

@@ -14,15 +14,22 @@ require("cpu")
 require("load")
 require("mpd")
 require("mail")
--- Load Debian menu entries
-require("debian.menu")
+require("menu")
+require("ip")
+require("net")
+
+function register_timer(timeout, callback)
+    mytimer = timer({ timeout=timeout })
+    mytimer:add_signal("timeout", callback)
+    mytimer:start()
+end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/themes/dan/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -70,7 +77,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
+                                    { "applications", xdgmenu },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -102,11 +109,17 @@ mpdwidget = widget({ type = "textbox" })
 loadwidget = widget({ type = "textbox" })
 mailwidget = widget({ type = "textbox" })
 mailwidget.text = get_mail_status()
-awful.hooks.timer.register(2, function() cpuwidget.text = activecpu() end)
-awful.hooks.timer.register(2, function() tempwidget.text = temperature() end)
-awful.hooks.timer.register(5, function() mpdwidget.text = get_song() end)
-awful.hooks.timer.register(5, function() loadwidget.text = load_uptime() end)
-awful.hooks.timer.register(15, function() mailwidget.text = get_mail_status() end)
+ipwidget = widget({ type = "textbox" })
+ipwidget.text = get_ip()
+iowidget = widget({ type = "textbox" })
+iowidget.text = get_iface_io_rate()
+register_timer(1, function() loadwidget.text = load_uptime() end)
+register_timer(2, function() cpuwidget.text = activecpu() end)
+register_timer(2, function() tempwidget.text = temperature() end)
+register_timer(5, function() mpdwidget.text = get_song() end)
+register_timer(10, function() mailwidget.text = get_mail_status() end)
+register_timer(15, function() ipwidget.text = get_ip() end)
+register_timer(1, function() iowidget.text = get_iface_io_rate() end)
 -- awful.hooks.timer.register(1, function() netwidget.text = obvious.net.recv('wlan0') end)
 
 -- Create volume widget
@@ -245,6 +258,8 @@ for s = 1, screen.count() do
         tempwidget,
         cpuwidget,
         loadwidget,
+        ipwidget,
+        iowidget,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
