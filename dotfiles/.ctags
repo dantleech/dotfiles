@@ -2,6 +2,8 @@
 --exclude=.git
 --exclude=**/cache/**
 --exclude=vendor/**/vendor/**
+--exclude=vendor/**/tests/**
+--exclude=vendor/**/Tests/**
 --tag-relative=yes
 --languages=php
 --PHP-kinds=+cfi-v

@@ -6,6 +6,7 @@ local tonumber = tonumber
 local tostring = tostring
 local print = print
 local pairs = pairs
+local string = string
 
 module("battery")
 
@@ -14,9 +15,27 @@ local limits = {{25, 5},
           { 7, 1},
             {0}}
 
+function file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
 function get_bat_state (adapter)
-    local fcur = io.open("/sys/class/power_supply/"..adapter.."/charge_now")
-    local fcap = io.open("/sys/class/power_supply/"..adapter.."/charge_full")
+    local batstring = "/sys/class/power_supply/%s/%s"
+    local chargenowstr = ""
+    local chargefullstr = ""
+
+    -- These files change their names depending on if the laptop is plugged in or not ..
+    if file_exists(string.format(batstring, adapter, 'charge_now')) then
+        chargenowstr = string.format(batstring, adapter, 'charge_now')
+        chargefullstr = string.format(batstring, adapter, 'charge_full')
+    else
+        chargenowstr = string.format(batstring, adapter, 'energy_now')
+        chargefullstr = string.format(batstring, adapter, 'energy_full')
+    end
+
+    local fcur = io.open(chargenowstr)
+    local fcap = io.open(chargefullstr)
     local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
     local cur = fcur:read()
     local cap = fcap:read()
@@ -90,3 +109,5 @@ function bat_remaining ()
         return line
     end
 end
+-- print(get_bat_state("BAT0"))
+
