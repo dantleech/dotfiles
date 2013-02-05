@@ -1,7 +1,7 @@
 [general]
 ui = basic
-accounts = ylly, dantleech
-maxsyncaccounts = 2
+accounts = ylly, dantleech, dantleechtest
+maxsyncaccounts = 3
 
 [Account ylly]
 autorefresh = 30
@@ -14,6 +14,12 @@ autorefresh = 10
 quick = 10
 localrepository = dantleech-local
 remoterepository = dantleech-remote
+
+[Account dantleechtest]
+autorefresh = 10
+quick = 10
+localrepository = dantleechtest-local
+remoterepository = dantleechtest-remote
 
 [Repository ylly-local]
 type = Maildir
@@ -37,3 +43,14 @@ keepalive = 60
 remotehost = www.dantleech.com
 remoteuser = daniel
 remotepass = athooX9A
+
+[Repository dantleechtest-local]
+type = Maildir
+localfolders = /home/daniel/mail/dantleechtest
+
+[Repository dantleechtest-remote]
+type = IMAP
+keepalive = 60
+remotehost = www.dantleech.com
+remoteuser = test
+remotepass = Shu1equ6

@@ -94,7 +94,7 @@ require "userscripts"
 
 -- Add bookmarks support
 require "bookmarks"
-require "bookmarks_chrome"
+-- require "bookmarks_chrome"
 
 -- Add download support
 require "downloads"
@@ -138,7 +138,7 @@ require "go_input"
 require "go_next_prev"
 require "go_up"
 
-require "adblock"
+-- require "adblock"
 
 -----------------------------
 -- End user script loading --

@@ -1,11 +1,15 @@
+mailboxes mail/dantleechtest/INBOX
 mailboxes mail/dantleech/INBOX
+mailboxes mail/dantleech/Sent
 mailboxes mail/dantleech/github.symfony
 mailboxes mail/dantleech/github.yprox
 mailboxes mail/dantleech/github.cmf
 mailboxes mail/ylly/INBOX
 
-source ~/.mutt/solarizedcolors
+# source ~/.mutt/solarizedcolors
 set sendmail="/usr/bin/msmtp"
+set from="daniel@dantleech.com"
+set use_from=yes
 set sort=threads
 set mail_check=0
 auto_view text/html

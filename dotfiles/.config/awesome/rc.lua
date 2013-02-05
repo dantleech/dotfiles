@@ -29,7 +29,7 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/dan/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminal"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 

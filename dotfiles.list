@@ -8,5 +8,6 @@
 .pentadactylrc
 .ssh/config
 .tmux.conf
+.zshrc
 .vim
 .vimrc
