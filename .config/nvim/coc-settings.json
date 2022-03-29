@@ -1,0 +1,58 @@
+{
+    "coc.source.around.enable":false,
+    "coc.source.buffer.enable":false,
+    "go.goplsEnv": {
+        "GOFLAGS": "-tags=integration,robovet"
+    },
+    "tsserver.enableJavascript": false,
+    "coc.source.file.enable":true,
+    "coc.preferences.enableFloatHighlight":true,
+    "coc.preferences.currentFunctionSymbolAutoUpdate":true,
+    "diagnostic.displayByAle": false,
+    "suggest.autoTrigger":"always",
+    "tsserver.trace.server": "verbose",
+    "tsserver.enable": true,
+    "xml.java.home":"/usr/lib/jvm/java-11-openjdk-amd64/",
+    "phpls.enable": false,
+    "phpactor.enable": true,
+    "phpactor.path": "phpactor",
+    "phpactor.debug": true,
+    "phpactor.revealOutputChannelOn":"warn",
+    "coc.preferences.enableMessageDialog":false,
+    "phpactor.trace.server":"error",
+    "suggest.floatEnable": false,
+    "phpactor.config": {
+        "logging.level": "error",
+        "logging.enabled": true,
+        "logging.path": "/home/daniel/www/phpactor/phpactor-session.log",
+        "language_server.diagnostic_sleep_time": 1000,
+        "language_server.diagnostics_on_update": false,
+        "language_server_completion.trim_leading_dollar": false,
+        "language_server_phpstan.level": 7,
+        "language_server_phpstan.enabled": false
+    },
+    "diagnostic.virtualText":false,
+    "diagnostic.enableSign": true,
+    "diagnostic.maxWindowHeight":100,
+    "diagnostic.maxWindowWidth":500,
+    "coc.preferences.useQuickfixForLocations":true,
+    "python.pythonPath": "python3",
+    "languageserver": {
+        "phpactor-tcp": {
+            "enable": false,
+            "args": ["language-server"],
+            "initializationOptions": {
+                "logging.level": "debug"
+            },
+            "filetypes": ["php"],
+            "port": 8890,
+            "host": "0.0.0.0"
+        },
+        "psalmls-phpactor": {
+            "enable": false,
+            "command": "/home/daniel/www/phpactor/language-server-psalm/bin/psalm-ls",
+            "args": ["language-server"],
+            "filetypes": ["php"]
+        }
+    }
+}
