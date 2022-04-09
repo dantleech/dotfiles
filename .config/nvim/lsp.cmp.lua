@@ -1,5 +1,11 @@
 local cmp = require 'cmp'
 cmp.setup {
+    formatting = {
+        format = function(entry, vim_item)
+            vim_item.menu = entry.completion_item.detail
+            return vim_item
+        end
+    },
     snippet = {
         expand = function(args)
             -- For `ultisnips` user.
