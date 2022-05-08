@@ -1,0 +1,31 @@
+<?php
+
+namespace {{ prototype.namespace }};
+
+use ArrayIterator;
+use Iterator;
+use IteratorAggregate;
+
+{% for class in prototype.classes %}
+class {{ class.name }} implements IteratorAggregate
+{
+    private $elements;
+
+    public function __construct(array $elements)
+    {
+        foreach ($elements as $element) {
+            $this->add($element);
+        }
+    }
+
+    private function add($element): void
+    {
+        $this->elements[] = $element;
+    }
+
+    public function getIterator(): Iterator
+    {
+        return new ArrayIterator($this->elements);
+    }
+}
+{% endfor %}

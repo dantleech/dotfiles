@@ -1,0 +1,22 @@
+{
+    "indexer.exclude_patterns": [
+        "/vendor/**/Tests/**/*",
+        "/vendor/**/tests/**/*",
+        "/vendor/composer/**/*",
+        "/extensions/**/*",
+        "/tests/**/*"
+    ],
+    "composer.autoloader_path": [
+        "%project_root%/vendor/autoload.php"
+    ],
+    "completion_worse.experimantal": true,
+    "rpc.store_replay": true,
+    "logging.enabled": true,
+    "logging.path": "/home/daniel/www/phpactor/phpactor/phpactor.log",
+    "logging.level": "debug",
+    "logging.formatter": "json",
+    "language_server.profile": true,
+    "language_server.trace": true,
+    "$schema": "/home/daniel/www/phpactor/phpactor/phpactor.schema.json"
+}
+
