@@ -11,3 +11,4 @@ source ~/.config/nvim/color.vim
 source ~/.config/nvim/treesitter.lua
 source ~/.config/nvim/lualine.lua
 source ~/.config/nvim/telescope.lua
+source ~/.config/nvim/projections.vim

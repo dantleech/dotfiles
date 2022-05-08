@@ -1,4 +1,5 @@
 local cmp = require 'cmp'
+
 cmp.setup {
     formatting = {
         format = function(entry, vim_item)
@@ -7,10 +8,9 @@ cmp.setup {
         end
     },
     snippet = {
-        expand = function(args)
-            -- For `ultisnips` user.
-            vim.fn["UltiSnips#Anon"](args.body)
-        end,
+      expand = function(args)
+        require'luasnip'.lsp_expand(args.body)
+      end
     },
     mapping = {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -32,9 +32,15 @@ cmp.setup {
         end,
     },
     sources = {
-        { name = 'nvim_lsp' }
+        { name = 'nvim_lsp' },
         -- { name = 'buffer' },
-        -- { name = 'ultisnips' },
+        { name = 'luasnip'},
+        { name = 'nvim_lsp_signature_help' },
     }
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+require'lspconfig'.phpactor.setup{
+    capabilities = capabilities
+}

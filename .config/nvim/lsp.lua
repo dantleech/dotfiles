@@ -2,8 +2,10 @@
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', ',di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', ',dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ',dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', ',dd', '<cmd>lua vim.diagnostic.disable()<CR>', opts)
+vim.api.nvim_set_keymap('n', ',de', '<cmd>lua vim.diagnostic.enable()<CR>', opts)
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<Leader>CR',  ':LspRestart<CR>', opts)
 
@@ -92,5 +94,3 @@ require'lspconfig'.phpactor.setup{
         ["language_server_phpstan.enabled"] = true,
     }
 }
-
-require "lsp_signature".setup({})
