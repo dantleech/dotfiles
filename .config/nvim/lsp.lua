@@ -88,7 +88,11 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end)
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 require'lspconfig'.phpactor.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
     init_options = {
         ["language_server_phpstan.enabled"] = true,
