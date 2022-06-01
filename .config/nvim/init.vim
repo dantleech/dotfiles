@@ -12,3 +12,5 @@ source ~/.config/nvim/treesitter.lua
 source ~/.config/nvim/lualine.lua
 source ~/.config/nvim/telescope.lua
 source ~/.config/nvim/projections.vim
+source ~/.config/nvim/debug.vim
+source ~/.config/nvim/dap.lua

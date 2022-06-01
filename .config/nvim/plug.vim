@@ -39,7 +39,6 @@ Plug 'junegunn/vim-emoji'
 Plug 'junegunn/fzf.vim'
 "Plug 'elzr/vim-json'
 Plug 'diepm/vim-rest-console'
-" Plug 'vim-vdebug/vdebug'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dadbod'
@@ -115,6 +114,8 @@ Plug 'henrik/vim-qargs'
 
 " Vdebug - PHP debugging
 " Plug 'joonty/vdebug'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 
 " Gist
 " Plug 'mattn/webapi-vim'

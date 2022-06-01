@@ -1,6 +1,7 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
+vim.lsp.set_log_level('trace');
 vim.api.nvim_set_keymap('n', ',di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', ',dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ',dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -93,6 +94,8 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 require'lspconfig'.phpactor.setup{
     capabilities = capabilities,
+    cmd = { 'env', 'XDEBUG_SESSION=1', 'phpactor', 'language-server' },
+    filetypes = { 'php', 'cucumber' },
     on_attach = on_attach,
     init_options = {
         ["language_server_phpstan.enabled"] = true,
