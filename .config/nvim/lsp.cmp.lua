@@ -1,9 +1,11 @@
 local cmp = require 'cmp'
+local compare = require('cmp.config.compare')
 
 cmp.setup {
     formatting = {
         format = function(entry, vim_item)
-            vim_item.menu = entry.completion_item.detail
+            -- ensure detail is shown (e.g. the class FQN)
+            -- vim_item.menu = entry.completion_item.detail
             return vim_item
         end
     },
@@ -30,6 +32,19 @@ cmp.setup {
                 fallback()
             end
         end,
+    },
+    sorting = {
+      priority_weight = 2,
+      comparators = {
+        compare.sort_text,
+        compare.offset,
+        compare.exact,
+        compare.score,
+        compare.recently_used,
+        compare.kind,
+        compare.length,
+        compare.order,
+      },
     },
     sources = {
         { name = 'nvim_lsp' },

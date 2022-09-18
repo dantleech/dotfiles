@@ -7,6 +7,7 @@ source ~/.config/nvim/phpactor.vim
 source ~/.config/nvim/lsp.lua
 source ~/.config/nvim/lsp.phpactor.lua
 source ~/.config/nvim/lsp.cmp.lua
+source ~/.config/nvim/lsp.jsonls.lua
 source ~/.config/nvim/color.vim
 source ~/.config/nvim/treesitter.lua
 source ~/.config/nvim/lualine.lua

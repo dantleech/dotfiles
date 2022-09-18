@@ -191,5 +191,5 @@ exec --no-startup-id /usr/local/bin/dbus_startup_hack
 exec xsetroot -solid "#333333"
 exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id dunst
-exec --no-startup-id setxkbmap -option compose:prsc -option caps:swapescape
+exec --no-startup-id setxkbmap -option compose:altgr -option caps:swapescape
 exec --no-startup-id xrandr --setprovideroutputsource 1 0

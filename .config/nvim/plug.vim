@@ -9,10 +9,13 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Plug 'neovim/nvim-lsp'
 Plug 'cespare/vim-toml'
 Plug '2072/PHP-Indenting-for-VIm'
+Plug 'pedrohdz/vim-yaml-folds'
 
 " Neovim LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer', {'branch': 'master'}
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+" Plug 'williamboman/nvim-lsp-installer', {'branch': 'master'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -24,6 +27,10 @@ Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 " Plug 'ray-x/lsp_signature.nvim'
+Plug 'j-hui/fidget.nvim'
+
+" CoC
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 Plug 'shaunsingh/solarized.nvim'

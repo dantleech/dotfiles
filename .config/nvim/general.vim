@@ -187,6 +187,7 @@ nnoremap <silent> <leader>sl :SidewaysLeft<CR>
 nnoremap <silent> <leader>sr :SidewaysRight<CR>
 
 command! CopyFilePath let @+ = expand('%p')
+command! CopyFullPath let @+ = expand('%:p')
 
 func! AsciiMode()
     syntax off
