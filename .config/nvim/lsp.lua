@@ -51,7 +51,7 @@ require("mason").setup {}
 require("mason-lspconfig").setup{}
 local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 lspconfig.sumneko_lua.setup{
     settings = {
@@ -64,6 +64,7 @@ lspconfig.sumneko_lua.setup{
 }
 
 lspconfig.gopls.setup{
+    on_attach = on_attach,
     settings = {
         gopls = {
             usePlaceholders = false,
@@ -76,11 +77,25 @@ lspconfig.gopls.setup{
         buildFlags =  {"-tags=integration"},
     }
 }
+lspconfig.tsserver.setup{
+    on_attach = on_attach,
+    settings = {
+    },
+    init_options = {
+    }
+}
 
 lspconfig.phpactor.setup{
     capabilities = capabilities,
     cmd = { 'env', 'XDEBUG_SESSION=1', 'phpactor', 'language-server' },
     filetypes = { 'php', 'cucumber' },
+    on_attach = on_attach,
+    init_options = {
+    }
+}
+
+lspconfig.rust_analyzer.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
     init_options = {
     }

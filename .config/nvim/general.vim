@@ -121,8 +121,8 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_map = ''
 
-autocmd FileType rst setlocal textwidth=78
-autocmd Filetype markdown setlocal textwidth=78
+" autocmd FileType rst setlocal textwidth=78
+autocmd Filetype markdown setlocal textwidth=78 wrapmargin=100
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
