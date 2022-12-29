@@ -7,6 +7,7 @@ vim.cmd([[
       autocmd Filetype php command! -nargs=0 LspPhpactorReindex lua vim.lsp.buf_notify(0, "phpactor/indexer/reindex",{})
       autocmd Filetype php command! -nargs=0 LspPhpactorConfig lua LspPhpactorDumpConfig()
       autocmd Filetype php command! -nargs=0 LspPhpactorStatus lua LspPhpactorStatus()
+      autocmd Filetype php command! -nargs=0 LspPhpactorNotFound lua LspPhpactorNotFound()
       autocmd Filetype php command! -nargs=0 LspPhpactorBlackfireStart lua LspPhpactorBlackfireStart()
       autocmd Filetype php command! -nargs=0 LspPhpactorBlackfireFinish lua LspPhpactorBlackfireFinish()
     augroup END
@@ -32,6 +33,12 @@ local function showWindow(title, syntax, contents)
 
     vim.api.nvim_buf_set_option(float.bufnr, "filetype", syntax)
     vim.api.nvim_buf_set_lines(float.bufnr, 0, -1, false, out)
+end
+function LspPhpactorNotFound()
+    local results, _ = vim.lsp.buf_request_sync(0, "phpactor/not_error", {["return"]=true})
+    for _, res in pairs(results or {}) do
+        showWindow("Phpactor LSP Configuration", "json", res["result"])
+    end
 end
 
 function LspPhpactorDumpConfig()

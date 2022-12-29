@@ -55,7 +55,7 @@ Plug 'janko/vim-test'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'chrisbra/unicode.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 
 " Plugin for developing plugins
 Plug 'tpope/vim-scriptease'
@@ -121,8 +121,8 @@ Plug 'henrik/vim-qargs'
 
 " Vdebug - PHP debugging
 " Plug 'joonty/vdebug'
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
+"Plug 'mfussenegger/nvim-dap'
+"Plug 'rcarriga/nvim-dap-ui'
 
 " Gist
 " Plug 'mattn/webapi-vim'
@@ -145,6 +145,7 @@ Plug 'pangloss/vim-javascript'
 "Plug 'ncm2/ncm2-go'
 "Plug 'fatih/vim-go'
 Plug 'jparise/vim-graphql'
+Plug 'rust-lang/rust.vim'
 
 
 call plug#end()
