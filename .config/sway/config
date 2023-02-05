@@ -129,6 +129,7 @@ bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut.
 
 # screenshot to clipboard script
 bindsym $mod+Shift+s exec "scrotclip"
+bindsym $mod+Shift+v exec "dtl-sway-record"
 # kill focused window
 bindsym $mod+Shift+Alt+k exec "swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).pid' | xargs kill -9"
 
